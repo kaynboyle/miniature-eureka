@@ -38,6 +38,23 @@ router.delete('/api/notes/:id', (req, res) => {
     console.log("deleting");
     const idtoDelete = req.params.id;  
     console.log(idtoDelete);
+    fs.readFile(path.join(__dirname,'../db/db.json'), 'utf8', (err, data) => {
+        if (err) throw err;
+        var data_json = JSON.parse(data);
+        console.log(data_json);
+        for (i=0; i<data_json.length; i++){
+            console.log(data_json[i].id);
+            if (idtoDelete == data_json[i].id){
+                console.log("i found it", data_json[i].id);
+            };
+            
+    
+        };
+    });
+    //read file see if id is in file
+    //file is read - remove entry from file (remove pop wha have you)
+    //re write / save file (db)
+    //send basic response res.status200
     // ///req body?? request body ?? being the body of html???
     // const newNote = req.body;
     // newNote.id = uuidv4();
